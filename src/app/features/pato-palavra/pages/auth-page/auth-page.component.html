@@ -1,0 +1,30 @@
+<div class="auth-container">
+  <div class="auth-left-panel wood-frame">
+    <div class="app-name wood-frame-tiny">PATO PALAVRA</div>
+    <div class="app-symbol">
+     <img src="pato-palavra.png" class="app-symbol-img">
+    </div>
+  </div>
+  <div class="auth-right-panel wood-frame">
+    <div class="form-toggle">
+      <button (click)="showLogin = true" [class.active]="showLogin">Login</button>
+      <button (click)="showLogin = false" [class.active]="!showLogin">Register</button>
+    </div>
+
+    @if (showLogin) {
+      <div class="login-form">
+        <h2 class="wood-frame">Login</h2>
+        <input #usernameLogin type="email" placeholder="Email" />
+        <input #passwordLogin type="password" placeholder="Password" />
+        <button (click)="login(usernameLogin.value, passwordLogin.value)">Login</button>
+      </div>
+    } @else {
+      <div class="register-form">
+        <h2 class="wood-frame">Create Account</h2>
+        <input #usernameRegister type="email" placeholder="Email" />
+        <input #passwordRegister type="password" placeholder="Password" />
+        <button (click)="register(usernameRegister.value, passwordRegister.value)">Register</button>
+      </div>
+    }
+  </div>
+</div>

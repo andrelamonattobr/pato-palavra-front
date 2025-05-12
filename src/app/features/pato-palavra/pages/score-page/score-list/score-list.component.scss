@@ -1,0 +1,59 @@
+.score-list-container {
+  height: 93%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.score-list {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.score-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 12px;
+  border-radius: 4px;
+  gap: 10px;
+  min-height: 40px;
+
+  &.wood-frame {
+    border: 2px solid #8B4513;
+    box-shadow: inset 0 0 0 3px #654321, inset 0 0 10px rgba(0, 0, 0, 0.6);
+    background-color: #f5f5dc;
+    box-sizing: border-box;
+    color: #333;
+  }
+}
+
+.score-name {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score-value {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.score-date {
+  text-align: right;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.empty-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-style: italic;
+  color: #666;
+} 

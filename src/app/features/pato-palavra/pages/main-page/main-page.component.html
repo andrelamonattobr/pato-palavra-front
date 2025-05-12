@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="main-content">
+      <div class="web-mascot-area wood-frame">
+        <div class="top">
+          <img src="pato-palavra.png" alt="">
+          <span style="font-size: 24px;">{{statusText}}</span>
+        </div>
+      </div>
+      <div class="word-insert-area wood-frame">
+        <div class="word-input-container">
+          <input type="text" #wordInput class="word-input" placeholder="Type a word" />
+          <button class="submit-button" (click)="submitWord(wordInput.value)">Submit</button>
+        </div>
+      </div>
+  </div>
+  
+  <div class="right-sidebar">
+    <button class="right-sidebar-button" (click)="score()">
+      SCOREBOARD
+    </button>
+  </div>
+
+  <button class="logout-button" (click)="logout()">
+    Logout
+  </button>
+
+</div>

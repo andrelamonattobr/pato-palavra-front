@@ -1,0 +1,12 @@
+<div class="score-list-container">
+  <div class="score-list">
+    <div class="score-item wood-frame" *ngFor="let item of items">
+      <div class="score-name">{{item.nickname}}</div>
+      <div class="score-value">{{item.attemptId}}</div>
+      <div class="score-date">{{item.points}}</div>
+    </div>
+    <div class="empty-message" *ngIf="items.length === 0">
+      No scores available
+    </div>
+  </div>
+</div> 

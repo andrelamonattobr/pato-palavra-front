@@ -1,0 +1,42 @@
+<div class="container">
+
+
+  <div class="main-content">
+      <div class="word-insert-area wood-frame">
+        <span class="personal-board-title">PERSONAL BOARD</span>
+      </div>
+      <div class="web-mascot-area wood-frame">
+        <div class="title-area">
+          <span>Nickname</span>
+          <span>Tentativa</span>
+          <span>Pontuação</span>
+        </div>
+        <app-score-list [items]="personalScores"></app-score-list>
+      </div>
+  </div>
+
+  <div class="main-content">
+    <div class="word-insert-area wood-frame">
+      <span class="leaderboard-title">LEADERBOARD</span>
+    </div>
+    <div class="web-mascot-area wood-frame">
+      <div class="title-area">
+        <span>Nickname</span>
+        <span>Tentativa</span>
+        <span>Pontuação</span>
+      </div>
+      <app-score-list [items]="leaderboardScores"></app-score-list>
+    </div>
+  </div>
+  
+  <div class="left-sidebar">
+    <button class="left-sidebar-button" (click)="main()">
+      MAIN
+    </button>
+  </div>
+
+  <button class="logout-button" (click)="logout()">
+    Logout
+  </button>
+
+</div>
