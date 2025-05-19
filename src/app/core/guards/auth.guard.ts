@@ -10,7 +10,10 @@ export class AuthGuard implements CanActivate {
 
   }
 
-  canActivate(): MaybeAsync<GuardResult> {
+  canActivate(): MaybeAsync<GuardResult> 
+  {
+    if (typeof(window) == undefined)
+      return false;
     if (sessionStorage.getItem("token"))
       return true;
     this.router.navigate(['pato/auth']);

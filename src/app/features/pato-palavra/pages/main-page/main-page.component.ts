@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
   logout() {
-    sessionStorage.removeItem("token");
+    typeof(window) != undefined ? sessionStorage.removeItem("token") : null;
     this.router.navigate(['pato/auth']);
   }
 

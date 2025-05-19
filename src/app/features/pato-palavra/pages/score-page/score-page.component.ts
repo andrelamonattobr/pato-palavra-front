@@ -35,7 +35,7 @@ export class ScorePageComponent implements OnInit {
   }
   
   logout() {
-    sessionStorage.removeItem("token");
+    typeof(window) != undefined ? sessionStorage.removeItem("token") : null;
     this.router.navigate(['pato/auth']);
   }
 

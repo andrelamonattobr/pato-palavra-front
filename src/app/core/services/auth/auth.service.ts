@@ -11,7 +11,11 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   async refreshToken(): Promise<boolean> {
-    const token = sessionStorage.getItem("refresh_token");
+    let token;
+    if (typeof(window) == undefined)
+      token = null;
+    else
+      token = sessionStorage.getItem('refresh_token');
 
     if (!token) {
       throw new Error('No token to refresh');
@@ -22,8 +26,10 @@ export class AuthService {
         refreshToken: token
       }).subscribe({
         next: (response) => {
-          sessionStorage.setItem("token", response.token);
-          sessionStorage.setItem("refresh_token", response.refreshToken);
+          if (typeof(window) != undefined){
+            sessionStorage.setItem("token", response.token);
+            sessionStorage.setItem("refresh_token", response.refreshToken);
+          }
           resolve(true);
         },
         error: (error) => {
@@ -36,10 +42,12 @@ export class AuthService {
 
   logout(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      sessionStorage.removeItem("token");
-      sessionStorage.removeItem("refresh_token");
-      sessionStorage.removeItem("nickname");
-      sessionStorage.removeItem("password");
+      if (typeof(window) != undefined){
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("refresh_token");
+        sessionStorage.removeItem("nickname");
+        sessionStorage.removeItem("password");
+      }
       resolve(true);
     })
   }
@@ -55,10 +63,12 @@ export class AuthService {
     return new Promise<boolean>((resolve) => {
       response.subscribe({
         next: (response) => {
-          sessionStorage.setItem("token", response.token);
-          sessionStorage.setItem("refresh_token", response.refreshToken);
-          sessionStorage.setItem("nickname", username);
-          sessionStorage.setItem("password", password);
+          if (typeof(window) == undefined){
+            sessionStorage.setItem("token", response.token);
+            sessionStorage.setItem("refresh_token", response.refreshToken);
+            sessionStorage.setItem("nickname", username);
+            sessionStorage.setItem("password", password);
+          }
           resolve(true);
         },
         error: (error) => {
@@ -80,10 +90,12 @@ export class AuthService {
     return new Promise<boolean>((resolve) => {
       response.subscribe({
         next: (response) => {
-          sessionStorage.setItem("token", response.token);
-          sessionStorage.setItem("refresh_token", response.refreshToken);
-          sessionStorage.setItem("nickname", username);
-          sessionStorage.setItem("password", password);
+          if (typeof(window) == undefined){
+            sessionStorage.setItem("token", response.token);
+            sessionStorage.setItem("refresh_token", response.refreshToken);
+            sessionStorage.setItem("nickname", username);
+            sessionStorage.setItem("password", password);
+          }
           resolve(true);
         },
         error: (error) => {

@@ -20,7 +20,7 @@ export class GameService {
         attemptId: number;
         points: number
       }[]
-    }>(environment.apiUrl + 'api/scoreboard/personal', {nickname: sessionStorage.getItem("nickname"), password: sessionStorage.getItem("password")});
+    }>(environment.apiUrl + 'api/scoreboard/personal', {nickname: typeof(window) != undefined ? sessionStorage.getItem("nickname") : "", password: typeof(window) != undefined ? sessionStorage.getItem("password") : ""});
 
     return new Promise<{nickname: string; attemptId: number; points: number}[]>((resolve, reject) => {
       response.subscribe({
@@ -55,7 +55,7 @@ export class GameService {
     const response = this.http.post<{
       success: boolean;
       message: string;
-    }>(environment.apiUrl + "api/words/register", {nickname: sessionStorage.getItem("nickname"), password: sessionStorage.getItem("password"), word: word});
+    }>(environment.apiUrl + "api/words/register", {nickname: typeof(window) != undefined ? sessionStorage.getItem("nickname") : "", password: typeof(window) != undefined ? sessionStorage.getItem("password") : "", word: word});
 
     return new Promise<{success: boolean; message: string}>((resolve, reject) => {
       response.subscribe({
