@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
     "serve:ssr:pato-palavra-front": "node dist/pato-palavra-front/server/server.mjs"
   },
   "private": true,
