@@ -2,17 +2,23 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   async refreshToken(): Promise<boolean> {
     let token;
-    if (typeof(window) == undefined)
+    if (!isPlatformBrowser(this.platformId))
       token = null;
     else
       token = sessionStorage.getItem('refresh_token');
@@ -26,7 +32,7 @@ export class AuthService {
         refreshToken: token
       }).subscribe({
         next: (response) => {
-          if (typeof(window) != undefined){
+          if (isPlatformBrowser(this.platformId)){
             sessionStorage.setItem("token", response.token);
             sessionStorage.setItem("refresh_token", response.refreshToken);
           }
@@ -42,7 +48,7 @@ export class AuthService {
 
   logout(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      if (typeof(window) != undefined){
+      if (isPlatformBrowser(this.platformId)){
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("refresh_token");
         sessionStorage.removeItem("nickname");
@@ -63,7 +69,7 @@ export class AuthService {
     return new Promise<boolean>((resolve) => {
       response.subscribe({
         next: (response) => {
-          if (typeof(window) == undefined){
+          if (isPlatformBrowser(this.platformId)){
             sessionStorage.setItem("token", response.token);
             sessionStorage.setItem("refresh_token", response.refreshToken);
             sessionStorage.setItem("nickname", username);
@@ -90,7 +96,7 @@ export class AuthService {
     return new Promise<boolean>((resolve) => {
       response.subscribe({
         next: (response) => {
-          if (typeof(window) == undefined){
+          if (isPlatformBrowser(this.platformId)){
             sessionStorage.setItem("token", response.token);
             sessionStorage.setItem("refresh_token", response.refreshToken);
             sessionStorage.setItem("nickname", username);

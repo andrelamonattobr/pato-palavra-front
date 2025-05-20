@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { GameService } from '../../../../core/services/game/game.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
@@ -15,7 +16,12 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
   @ViewChild('wordInput') myInput!: ElementRef;
 
-  constructor(private authService: AuthService, private router: Router, private gameService: GameService) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router, 
+    private gameService: GameService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
     this.statusText = "Waiting for players...";
@@ -26,7 +32,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
   logout() {
-    typeof(window) != undefined ? sessionStorage.removeItem("token") : null;
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.removeItem("token");
+    }
     this.router.navigate(['pato/auth']);
   }
 
