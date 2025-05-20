@@ -39,21 +39,22 @@ jobs:
         name: build-files
         path: build/
         
-  deploy:
-    needs: build-and-test
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: build
-        
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build
-        branch: gh-pages
-        token: ${{ secrets.GITHUB_TOKEN }}
+  #Vamo deixar isso para depois
+  #deploy:
+  #  needs: build-and-test
+  #  if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+  #  runs-on: ubuntu-latest
+  #  
+  #  steps:
+  #  - name: Download build artifacts
+  #    uses: actions/download-artifact@v4
+  #    with:
+  #      name: build-files
+  #      path: build
+  #      
+  #  - name: Deploy to GitHub Pages
+  #    uses: JamesIves/github-pages-deploy-action@v4
+  #    with:
+  #      folder: build
+  #      branch: gh-pages
+  #      token: ${{ secrets.GITHUB_TOKEN }}
