@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface ScoreItem {
-  nickname: string;
+  username: string;
   attemptId: number;
   points: number;
 }

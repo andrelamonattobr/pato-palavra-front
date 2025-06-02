@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class MainPageComponent implements OnInit, AfterViewInit {
 
-  statusText: string = "Waiting for players...";
+  statusText: string = "Waiting for players ...";
 
   @ViewChild('wordInput') myInput!: ElementRef;
 
@@ -24,7 +24,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.statusText = "Waiting for players...";
+    this.statusText = "Waiting for players ...";
   }
 
   ngAfterViewInit(): void {
@@ -47,7 +47,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
       this.statusText = response.message;
 
       setTimeout(() => {
-        this.statusText = "Waiting for players...";
+        this.statusText = "Waiting for players ...";
       }, 2500);
 
     }).catch(error => {

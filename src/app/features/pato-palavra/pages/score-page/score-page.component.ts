@@ -12,8 +12,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './score-page.component.scss'
 })
 export class ScorePageComponent implements OnInit {
-  personalScores: { nickname: string; attemptId: number; points: number; }[] = [];
-  leaderboardScores: { nickname: string; attemptId: number; points: number; }[] = [];
+  personalScores: { username: string; attemptId: number; points: number; }[] = [];
+  leaderboardScores: { username: string; attemptId: number; points: number; }[] = [];
 
   constructor(
     private authService: AuthService, 
