@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://sea-lion-app-744wc.ondigitalocean.app/'
+    apiUrl: 'https://sea-lion-app-744wc.ondigitalocean.app/'
 };
