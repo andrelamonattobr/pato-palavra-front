@@ -23,12 +23,12 @@ export class ScorePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.gameService.getPersonalScore().then(result => {
+    /*this.gameService.getPersonalScore().then(result => {
       this.personalScores = result;
     }).catch(err => {
       this.authService.logout();
       this.router.navigate(['pato/auth']);
-    });
+    });*/
 
     this.gameService.getLeaderboard().then(result => {
       this.leaderboardScores = result
